@@ -1,0 +1,210 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding-top: 100px;
+    min-height: 100vh;
+}
+
+/* Navigation Menu */
+.navbar {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-item {
+    position: relative;
+    margin: 0 20px;
+}
+
+.nav-item a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 10px;
+    display: block;
+}
+
+.nav-item a:hover {
+    color: orange;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.9);
+    min-width: 150px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+}
+
+.dropdown-menu li {
+    list-style: none;
+}
+
+.dropdown-menu li a {
+    padding: 12px 16px;
+    font-size: 1rem;
+    color: white;
+}
+
+.dropdown-menu li a:hover {
+    background-color: orange;
+    color: white;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-toggle::after {
+    content: ' ▼';
+    font-size: 0.7rem;
+}
+
+/* Container Styling */
+.container {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 30px 40px; /* more padding for a bigger feel */
+    width: 70%;          /* increased width */
+    max-width: 700px;    /* increased max width */
+    border-radius: 8px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 150px auto 50px;  /* pushes it down and centers it */
+}
+
+h1 {
+    font-size: 2em;
+    color: orange;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Form Styling */
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Increased gap between form fields */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+label {
+    font-size: 1em;
+    color: #333;
+}
+
+input,
+select {
+    padding: 10px;
+    font-size: 0.95em;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease-in-out;
+}
+
+input:focus,
+select:focus {
+    border-color: #3498db;
+    background-color: #eaf4ff;
+    outline: none;
+}
+
+/* Submit Button */
+.submit-button {
+    padding: 12px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: white;
+    color: orange;
+    border: 1px solid orange;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        max-width: 90%;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    input,
+    select {
+        font-size: 0.9em;
+        padding: 8px;
+    }
+
+    .submit-button {
+        font-size: 0.95em;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+        max-width: 100%;
+    }
+
+    h1 {
+        font-size: 1.6em;
+    }
+
+    input,
+    select {
+        font-size: 0.9em;
+        padding: 7px;
+    }
+
+    .submit-button {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+}
