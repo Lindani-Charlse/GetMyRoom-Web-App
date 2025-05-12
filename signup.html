@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding-top: 80px;
+            min-height: 100vh;
+        }
+
+        /* Navigation Menu */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px 30px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+            margin: 0 20px;
+        }
+
+        .nav-item a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-item a:hover {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            color: orange;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.9);
+            list-style: none;
+            padding: 10px 0;
+            margin: 0;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            min-width: 200px;
+            top: 100%;
+            left: 0;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu li a {
+            padding: 10px 20px;
+            color: white;
+            font-size: 1rem;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: orange;
+            color: white;
+        }
+
+        .dropdown-toggle::after {
+            content: ' ▼';
+            font-size: 0.7rem;
+            margin-left: 5px;
+        }
+
+        /* Container Styling */
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+            text-align: center;
+        }
+
+        /* Logo Styling */
+        .logo {
+            max-width: 100px;
+            border-radius: 8px;
+            margin: 0 auto 20px;
+            display: block;
+        }
+
+        /* Headings */
+        h1 {
+            color: orange;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-group label i {
+            color: orange;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="password"],
+        .form-group select,
+        .form-group input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: orange;
+            outline: none;
+            box-shadow: 0 0 5px rgba(255,165,0,0.3);
+        }
+
+        .form-group select {
+            appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="%2334495e" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            padding-right: 30px;
+        }
+
+        .form-group input[type="file"]::file-selector-button {
+            padding: 8px 15px;
+            background-color: orange;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-group input[type="file"]::file-selector-button:hover {
+            background-color: #e69500;
+        }
+
+        /* Checkbox Styling */
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            cursor: pointer;
+            accent-color: orange;
+        }
+
+        .checkbox-group label {
+            font-size: 0.9rem;
+            color: #555;
+            cursor: pointer;
+        }
+
+        .checkbox-group label a {
+            color: orange;
+            text-decoration: none;
+        }
+
+        .checkbox-group label a:hover {
+            text-decoration: underline;
+        }
+
+        /* Button Styling */
+        .submit-button {
+            padding: 12px 24px;
+            background: orange;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+
+        .submit-button:hover {
+            background: white;
+            color: orange;
+            border: 1px solid orange;
+            transform: translateY(-2px);
+        }
+
+        .submit-button:disabled {
+            background: #6c757d;
+            color: white;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Footer Styling */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #e9ecef;
+            color: orange;
+            font-size: 0.9em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                max-width: 90%;
+                padding: 20px;
+            }
+
+            .nav-item {
+                margin: 5px 10px;
+            }
+
+            .form-group input,
+            .form-group select {
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.6em;
+            }
+
+            .submit-button {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+
+            .form-group label {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li class="nav-item"><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+            <li class="nav-item"><a href="contact.html"><i class="fas fa-phone-alt"></i> Contact</a></li>
+            <li class="nav-item"><a href="services.html"><i class="fas fa-concierge-bell"></i> Services</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <img src="logo.png" alt="University Logo" class="logo">
+        <h1>Create Student Profile</h1>
+        <form id="applicationForm" action="CreateStudentProfileServlet.do" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="studentNo"><i class="fas fa-id-card"></i> Student Number</label>
+                <input type="text" id="studentNo" name="studentNo" pattern="\d{9}" title="Student number must be exactly 9 digits" required>
+            </div>
+            <div class="form-group">
+                <label for="fundingType"><i class="fas fa-money-check-alt"></i> Funding Type</label>
+                <select id="fundingType" name="fundingType" required>
+                    <option value="" disabled selected>Select Funding Type</option>
+                    <option value="cash">Cash Paying</option>
+                    <option value="nsfas">NSFAS</option>
+                    <option value="external">External Bursary</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="password"><i class="fas fa-lock"></i> Password</label>
+                <input type="password" id="password" name="password" minlength="6" maxlength="15" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password"><i class="fas fa-lock"></i> Confirm Password</label>
+                <input type="password" id="confirm_password" name="confirm_password" minlength="6" maxlength="15" required>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="showPassword" name="showPassword">
+                <label for="showPassword">Show Passwords</label>
+            </div>
+            <div class="form-group">
+                <label for="profilePic"><i class="fas fa-image"></i> Profile Picture</label>
+                <input type="file" id="profilePic" name="profilePic" accept="image/*">
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I agree to the <a href="terms.html" target="_blank">Terms and Conditions</a></label>
+            </div>
+            <button type="submit" class="submit-button" id="submitBtn" disabled><i class="fas fa-user-plus"></i> Create Profile</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>© 2025 GetMyRoom. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('showPassword').addEventListener('change', function() {
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirm_password');
+            passwordInput.type = this.checked ? 'text' : 'password';
+            confirmPasswordInput.type = this.checked ? 'text' : 'password';
+        });
+
+        document.getElementById('terms').addEventListener('change', function() {
+            document.getElementById('submitBtn').disabled = !this.checked;
+        });
+
+        document.getElementById('applicationForm').addEventListener('submit', function(event) {
+            const studentNo = document.getElementById('studentNo').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+            const profilePic = document.getElementById('profilePic').files[0];
+
+            if (!/^\d{9}$/.test(studentNo)) {
+                alert('Student number must be exactly 9 digits.');
+                event.preventDefault();
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match.');
+                event.preventDefault();
+                return;
+            }
+
+            if (password.length < 6 || password.length > 15) {
+                alert('Password must be 6-15 characters long.');
+                event.preventDefault();
+                return;
+            }
+
+            if (profilePic && profilePic.size > 5 * 1024 * 1024) {
+                alert('Profile picture must be less than 5MB.');
+                event.preventDefault();
+                return;
+            }
+        });
+    </script>
+</body>
+</html>
