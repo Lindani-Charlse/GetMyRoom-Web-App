@@ -1,0 +1,710 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding-top: 80px;
+    min-height: 100vh;
+}
+
+/* Navigation Menu */
+.navbar {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-item {
+    position: relative;
+    margin: 0 20px;
+}
+
+.nav-item a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.3s ease;
+}
+
+.nav-item a:hover {
+    color: orange;
+}
+
+.nav-item a i {
+    font-size: 1rem;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.9);
+    min-width: 150px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+    top: 100%;
+    left: 0;
+}
+
+.dropdown-menu li {
+    list-style: none;
+}
+
+.dropdown-menu li a {
+    padding: 12px 16px;
+    font-size: 1rem;
+    color: white;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-menu li a:hover {
+    background-color: orange;
+    color: white;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-toggle::after {
+    content: ' ▼';
+    font-size: 0.7rem;
+    margin-left: 5px;
+}
+
+/* Header Styling */
+header {
+    background-color: #f4f7f6;
+    color: orange;
+    padding: 20px;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.live-time {
+    font-size: 1rem;
+    color: #34495e;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Container Styling */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: row;
+    min-height: calc(100vh - 200px);
+}
+
+.container:not(.admin-container) {
+    max-width: 600px;
+    flex-direction: column;
+    padding: 30px;
+    text-align: center;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 20%;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    border-radius: 8px 0 0 8px;
+}
+
+.sidebar h3 {
+    font-size: 1.2em;
+    color: orange;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    margin-top: 20px;
+}
+
+.sidebar ul li {
+    margin: 15px 0;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+    transition: color 0.3s;
+}
+
+.sidebar ul li a:hover {
+    color: orange;
+}
+
+/* Content Styling */
+.content {
+    flex: 1;
+    padding: 30px;
+    background-color: white;
+    border-radius: 0 8px 8px 0;
+}
+
+/* Headings */
+h1 {
+    color: orange;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+h2 {
+    color: #34495e;
+    font-size: 1.5rem;
+    margin: 20px 0;
+}
+
+h3 {
+    color: #34495e;
+    font-size: 1.3rem;
+    margin: 15px 0;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #34495e;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: orange;
+    background-color: #fff;
+}
+
+/* Dropdown Styling */
+select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%2334495e" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 30px;
+}
+
+/* Checkbox and Radio Styling */
+.checkbox-group, .radio-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.checkbox-group input[type="checkbox"], .radio-group input[type="radio"] {
+    width: auto;
+    cursor: pointer;
+    accent-color: orange;
+}
+
+.checkbox-group label, .radio-group label {
+    font-size: 0.9rem;
+    color: #34495e;
+    cursor: pointer;
+}
+
+/* File Input Styling */
+input[type="file"] {
+    padding: 5px;
+    border: none;
+    background: none;
+}
+
+input[type="file"]::file-selector-button {
+    padding: 8px 15px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background-color: #e69500;
+}
+
+/* Button Styling */
+button, .submit-button {
+    background-color: orange;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+button:hover, .submit-button:hover {
+    background-color: white;
+    color: orange;
+    border: 1px solid orange;
+}
+
+/* Table Styling */
+.profile-info {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #fff;
+}
+
+.profile-info th, .profile-info td {
+    padding: 12px;
+    border: 1px solid #eee;
+    text-align: left;
+}
+
+.profile-info th {
+    background-color: orange;
+    color: white;
+    font-weight: bold;
+}
+
+.profile-info td {
+    vertical-align: middle;
+}
+
+.profile-info td a {
+    color: orange;
+    text-decoration: none;
+    margin-right: 10px;
+    font-size: 0.9rem;
+}
+
+.profile-info td a:hover {
+    text-decoration: underline;
+}
+
+.profile-info .profile-pic {
+    max-width: 50px;
+    border-radius: 4px;
+}
+
+/* Image Styling */
+.logo {
+    max-width: 100px;
+    border-radius: 8px;
+    margin: 0 auto 20px;
+    display: block;
+}
+
+/* Signup Link */
+.signup-link {
+    margin-top: 15px;
+    color: #34495e;
+    font-size: 0.9rem;
+}
+
+.signup-link a {
+    color4: orange;
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+/* Datepicker Customization */
+.ui-datepicker {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+.ui-datepicker-header {
+    background-color: orange;
+    color: white;
+    border-radius: 4px 4px 0 0;
+    padding: 5px;
+}
+
+.ui-datepicker-calendar td a {
+    text-align: center;
+    color: #333;
+    padding: 5px;
+    display: block;
+}
+
+.ui-datepicker-calendar td a:hover {
+    background-color: orange;
+    color: white;
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    background-color: #f4f7f6;
+    color: orange;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        margin: 10px;
+    }
+
+    .sidebar {
+        width: 100%;
+        border-radius: 8px;
+        padding: 15px;
+    }
+
+    .content {
+        border-radius: 8px;
+        padding: 15px;
+    }
+
+    .nav-item {
+        margin: 0 10px;
+    }
+
+    .nav-item a {
+        font-size: 1rem;
+    }
+
+    .profile-info th, .profile-info td {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    h3 {
+        font-size: 1.1rem;
+    }
+
+    button, .submit-button {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+    }
+
+    input, select {
+        font-size: 0.9rem;
+    }
+}
+
+.profile-form {
+    max-width: 600px;
+    margin: 20px 0;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.submit-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+.cancel-button {
+    background-color: #6c757d;
+}
+.submit-button:hover {
+    background-color: #45a049;
+}
+.cancel-button:hover {
+    background-color: #5a6268;
+}
+
+/* Existing styles */
+.profile-info {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.profile-info th, .profile-info td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+.profile-form {
+    max-width: 600px;
+    margin: 20px 0;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.submit-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+}
+.cancel-button {
+    background-color: #6c757d;
+}
+.delete-button {
+    background-color: #f44336;
+}
+.submit-button:hover {
+    background-color: #45a049;
+}
+.cancel-button:hover {
+    background-color: #5a6268;
+}
+.delete-button:hover {
+    background-color: #da190b;
+}
+
+/* New styles for message box */
+.message-box {
+    position: relative;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 600px;
+}
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+.close-message {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font-size: 16px;
+}
+.close-message:hover {
+    color: #000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* General button styles for consistency */
+.action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+/* Edit button (green) */
+.edit-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.edit-button:hover {
+    background-color: #45a049;
+}
+
+/* Delete button (red) */
+.delete-button {
+    background-color: #f44336;
+    color: white;
+}
+
+.delete-button:hover {
+    background-color: #da190b;
+}
+
+/* Icon spacing */
+.action-button i {
+    margin-right: 5px;
+}
+
+/* Table styles */
+.profile-info {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.profile-info th, .profile-info td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+/* Message box styles */
+.message-box {
+    position: relative;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 600px;
+}
+
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.close-message {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.close-message:hover {
+    color: #000;
+}
+
+/* Add New Room button (reusing submit-button for consistency) */
+.submit-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 10px 0;
+}
+
+.submit-button:hover {
+    background-color: #45a049;
+}
+
+.submit-button i {
+    margin-right: 5px;
+}
