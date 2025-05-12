@@ -251,6 +251,27 @@
             transform: none;
         }
 
+        /* Message Styling */
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
         /* Footer Styling */
         footer {
             text-align: center;
@@ -309,6 +330,7 @@
     <div class="container">
         <img src="logo.png" alt="University Logo" class="logo">
         <h1>Create Student Profile</h1>
+        <div id="messageContainer"></div>
         <form id="applicationForm" action="CreateStudentProfileServlet.do" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="studentNo"><i class="fas fa-id-card"></i> Student Number</label>
@@ -352,6 +374,7 @@
     </footer>
 
     <script>
+        // Show Password toggle
         document.getElementById('showPassword').addEventListener('change', function() {
             const passwordInput = document.getElementById('password');
             const confirmPasswordInput = document.getElementById('confirm_password');
@@ -359,10 +382,12 @@
             confirmPasswordInput.type = this.checked ? 'text' : 'password';
         });
 
+        // Enable submit button when terms are agreed
         document.getElementById('terms').addEventListener('change', function() {
             document.getElementById('submitBtn').disabled = !this.checked;
         });
 
+        // Client-side form validation
         document.getElementById('applicationForm').addEventListener('submit', function(event) {
             const studentNo = document.getElementById('studentNo').value;
             const password = document.getElementById('password').value;
@@ -370,29 +395,55 @@
             const profilePic = document.getElementById('profilePic').files[0];
 
             if (!/^\d{9}$/.test(studentNo)) {
-                alert('Student number must be exactly 9 digits.');
                 event.preventDefault();
+                const messageContainer = document.getElementById('messageContainer');
+                messageContainer.innerHTML = '<p class="error-message">Student number must be exactly 9 digits.</p>';
                 return;
             }
 
             if (password !== confirmPassword) {
-                alert('Passwords do not match.');
                 event.preventDefault();
+                const messageContainer = document.getElementById('messageContainer');
+                messageContainer.innerHTML = '<p class="error-message">Passwords do not match.</p>';
                 return;
             }
 
             if (password.length < 6 || password.length > 15) {
-                alert('Password must be 6-15 characters long.');
                 event.preventDefault();
+                const messageContainer = document.getElementById('messageContainer');
+                messageContainer.innerHTML = '<p class="error-message">Password must be 6-15 characters long.</p>';
                 return;
             }
 
             if (profilePic && profilePic.size > 5 * 1024 * 1024) {
-                alert('Profile picture must be less than 5MB.');
                 event.preventDefault();
+                const messageContainer = document.getElementById('messageContainer');
+                messageContainer.innerHTML = '<p class="error-message">Profile picture must be less than 5MB.</p>';
                 return;
             }
         });
+
+        // Display message from query parameters
+        window.onload = function() {
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const message = urlParams.get('message');
+                const messageType = urlParams.get('messageType');
+                const messageContainer = document.getElementById('messageContainer');
+
+                if (message && messageType) {
+                    const messageDiv = document.createElement('p');
+                    messageDiv.className = messageType === 'success' ? 'success-message' : 'error-message';
+                    messageDiv.textContent = decodeURIComponent(message);
+                    messageContainer.appendChild(messageDiv);
+
+                    // Clear query parameters from URL
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                }
+            } catch (e) {
+                console.error('Error displaying message:', e);
+            }
+        };
     </script>
 </body>
 </html>
