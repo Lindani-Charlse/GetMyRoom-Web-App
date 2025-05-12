@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GetMyRoom Student Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li class="nav-item"><a href="studentLogin.html"><i class="fas fa-user-graduate"></i> Student Login</a></li>
+            <li class="nav-item"><a href="signup.html"><i class="fas fa-user-plus"></i> Create Profile</a></li>
+<!--            <li class="nav-item"><a href="roomApplication.html"><i class="fas fa-door-open"></i> Room Application</a></li>-->
+            <li class="nav-item dropdown">
+                <a href="#" class="dropdown-toggle"><i class="fas fa-ellipsis-h"></i> More</a>
+                <ul class="dropdown-menu">
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="contact.html"><i class="fas fa-phone-alt"></i> Contact</a></li>
+                    <li><a href="services.html"><i class="fas fa-concierge-bell"></i> Services</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <img src="logo.png" alt="University Logo" class="logo">
+        <h1>Student Login</h1>
+        <p><i>Access your GetMyRoom profile</i></p>
+        <div id="messageContainer"></div>
+        <form class="login-form" action="studLoginServlet.do" method="POST">
+            <div class="form-group">
+                <label for="studentNo">Student Number</label>
+                <input type="text" id="studentNo" name="studentNo" placeholder="000000000" required pattern="[0-9]{9}" title="Student number must be 9 digits">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required minlength="8" title="Password must be at least 8 characters">
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="showPassword" name="showPassword">
+                <label for="showPassword">Show Password</label>
+            </div>
+            <button type="submit" class="submit-button" style="padding: 12px 24px; background: orange; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease; width: 100%; justify-content: center; font-family: 'Poppins', sans-serif;" onmouseover="this.style.background='white'; this.style.color='orange'; this.style.border='1px solid orange'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='orange'; this.style.color='white'; this.style.border='none'; this.style.transform='none';">Login</button>
+        </form>
+        <p class="signup-link" style="margin-top: 15px; font-size: 0.9em; font-family: 'Poppins', sans-serif;">Don't have an account? <a href="signup.html" style="color: orange; text-decoration: none; font-weight: 600; font-family: 'Poppins', sans-serif;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">Create a Profile</a></p>
+        <p class="signup-link" style="margin-top: 15px; font-size: 0.9em; font-family: 'Poppins', sans-serif;"><a href="resetPassword.jsp" style="color: orange; text-decoration: none; font-weight: 600; font-family: 'Poppins', sans-serif;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">Forgot Password?</a></p>
+    </div>
+
+    <footer>
+        <p>© 2025 GetMyRoom. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Show Password toggle
+        document.getElementById('showPassword').addEventListener('change', function() {
+            const passwordInput = document.getElementById('password');
+            passwordInput.type = this.checked ? 'text' : 'password';
+        });
+
+        // Display message from query parameters
+        window.onload = function() {
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const message = urlParams.get('message');
+                const messageType = urlParams.get('messageType');
+                const redirectTo = urlParams.get('redirectTo');
+                const messageContainer = document.getElementById('messageContainer');
+
+                if (message && messageType) {
+                    const messageDiv = document.createElement('p');
+                    messageDiv.className = messageType === 'success' ? 'success-message' : 'error-message';
+                    messageDiv.textContent = decodeURIComponent(message);
+                    messageContainer.appendChild(messageDiv);
+
+                    // Clear query parameters from URL
+                    window.history.replaceState({}, document.title, window.location.pathname);
+
+                    // Redirect for success case after 3 seconds
+                    if (messageType === 'success' && redirectTo) {
+                        setTimeout(function() {
+                            window.location.href = redirectTo;
+                        }, 3000);
+                    }
+                }
+            } catch (e) {
+                console.error('Error displaying message:', e);
+            }
+        };
+    </script>
+</body>
+</html>
