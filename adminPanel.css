@@ -1,0 +1,157 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f4f4f4;
+}
+
+/* Navigation Menu */
+.navbar {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-item {
+    position: relative;
+    margin: 0 20px;
+}
+
+.nav-item a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 10px;
+    display: block;
+}
+
+.nav-item a:hover {
+    color: orange;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.9);
+    min-width: 150px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+}
+
+.dropdown-menu li {
+    list-style: none;
+}
+
+.dropdown-menu li a {
+    padding: 12px 16px;
+    font-size: 1rem;
+    color: white;
+}
+
+.dropdown-menu li a:hover {
+    background-color: orange;
+    color: white;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-toggle::after {
+    content: ' ▼';
+    font-size: 0.7rem;
+}
+
+/* Header Styling */
+header {
+    background-color: #f4f4f4;
+    color: orange;
+    padding: 20px;
+    text-align: center;
+    margin-top: 80px; /* Adjusted to prevent overlap with navbar */
+}
+
+/* Container Styling */
+.container {
+    display: flex;
+    margin: 20px;
+    height: 80%;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 20%;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+}
+
+.sidebar h3 {
+    font-size: 1.2em;
+    color: orange;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    margin-top: 30px;
+}
+
+.sidebar ul li {
+    margin: 15px 0;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+    transition: color 0.3s;
+}
+
+.sidebar ul li a:hover {
+    color: orange;
+}
+
+/* Content Styling */
+.content {
+    flex: 1;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.content h2 {
+    font-size: 2em;
+    color: orange;
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    padding: 10px;
+    color: default;
+    background-color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}

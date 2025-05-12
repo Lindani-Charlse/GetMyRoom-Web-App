@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GetMyRoom Admin Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body style="font-family: 'Poppins', sans-serif; background-color: #fರ0px; color: #333; line-height: 1.6; margin: 0; padding-top: 80px; min-height: 100vh;">
+    <nav style="background-color: rgba(0, 0, 0, 0.7); padding: 15px 0; position: fixed; width: 100%; top: 0; z-index: 1000;">
+        <ul style="list-style: none; margin: 0; padding: 0; display: flex; justify-content: center;">
+            <li style="position: relative; margin: 0 20px;">
+                <a href="index.html" style="color: white; text-decoration: none; font-size: 1.2rem; padding: 10px; display: flex; align-items: center; gap: 5px; transition: color 0.3s ease;"><i class="fas fa-home" style="font-size: 1rem;"></i> Home</a>
+            </li>
+            <li style="position: relative; margin: 0 20px;">
+                <a href="studentLogin.html" style="color: white; text-decoration: none; font-size: 1.2rem; padding: 10px; display: flex; align-items: center; gap: 5px; transition: color 0.3s ease;"><i class="fas fa-user-graduate" style="font-size: 1rem;"></i> Student</a>
+            </li>
+            <li style="position: relative; margin: 0 20px;">
+                <a href="adminLogin.html" style="color: white; text-decoration: none; font-size: 1.2rem; padding: 10px; display: flex; align-items: center; gap: 5px; transition: color 0.3s ease;"><i class="fas fa-user-shield" style="font-size: 1rem;"></i> Admin</a>
+            </li>
+            <li style="position: relative; margin: 0 20px;" class="dropdown">
+                <a href="#" style="color: white; text-decoration: none; font-size: 1.2rem; padding: 10px; display: flex; align-items: center; gap: 5px; transition: color 0.3s ease;"><i class="fas fa-ellipsis-h" style="font-size: 1rem;"></i> More<span style="font-size: 0.7rem; margin-left: 5px;">▼</span></a>
+                <ul style="display: none; position: absolute; background-color: rgba(0, 0, 0, 0.9); min-width: 150px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); z-index: 1; border-radius: 5px; top: 100%; left: 0;" onmouseover="this.style.display='block';" onmouseout="this.style.display='none';">
+                    <li style="list-style: none;">
+                        <a href="about.html" style="padding: 12px 16px; font-size: 1rem; color: white; display: block; transition: background-color 0.3s ease;"><i class="fas fa-info-circle"></i> About</a>
+                    </li>
+                    <li style="list-style: none;">
+                        <a href="contact.html" style="padding: 12px 16px; font-size: 1rem; color: white; display: block; transition: background-color 0.3s ease;"><i class="fas fa-phone-alt"></i> Contact</a>
+                    </li>
+                    <li style="list-style: none;">
+                        <a href="services.html" style="padding: 12px 16px; font-size: 1rem; color: white; display: block; transition: background-color 0.3s ease;"><i class="fas fa-concierge-bell"></i> Services</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <div style="max-width: 600px; margin: 20px auto; background: rgba(255, 255, 255, 0.95); border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); padding: 30px; text-align: center;">
+        <img src="logo.png" alt="University Logo" style="max-width: 100px; border-radius: 8px; margin: 0 auto 20px; display: block;">
+        <h1 style="color: orange; font-size: 2rem; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;">Admin Login</h1>
+        <p style="font-style: italic; color: #34495e; margin-bottom: 20px;">Access your GetMyRoom admin portal</p>
+        <div id="messageContainer" style="margin-bottom: 20px;"></div>
+        <form action="AdminServlet.do" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+            <div style="text-align: left; margin-bottom: 15px;">
+                <label for="username" style="display: block; margin-bottom: 5px; color: #34495e; font-weight: bold; font-size: 1rem;">Username</label>
+                <input type="text" id="username" name="name" placeholder="Enter username" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; background-color: #f9f9f9; transition: border-color 0.3s ease, background-color 0.3s ease;" onfocus="this.style.borderColor='orange'; this.style.backgroundColor='#fff';" onblur="this.style.borderColor='#ccc'; this.style.backgroundColor='#f9f9f9';">
+            </div>
+            <div style="text-align: left; margin-bottom: 15px;">
+                <label for="password" style="display: block; margin-bottom: 5px; color: #34495e; font-weight: bold; font-size: 1rem;">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter password" required minlength="8" title="Password must be at least 8 characters" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; background-color: #f9f9f9; transition: border-color 0.3s ease, background-color 0.3s ease;" onfocus="this.style.borderColor='orange'; this.style.backgroundColor='#fff';" onblur="this.style.borderColor='#ccc'; this.style.backgroundColor='#f9f9f9';">
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                <input type="checkbox" id="showPassword" name="showPassword" style="width: auto; cursor: pointer; accent-color: orange;">
+                <label for="showPassword" style="font-size: 0.9rem; color: #34495e; cursor: pointer;">Show Password</label>
+            </div>
+            <button type="submit" style="padding: 12px 24px; background: orange; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease; width: 100%; justify-content: center; font-family: 'Poppins', sans-serif;" onmouseover="this.style.background='white'; this.style.color='orange'; this.style.border='1px solid orange'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='orange'; this.style.color='white'; this.style.border='none'; this.style.transform='none';">Login</button>
+        </form>
+    </div>
+
+    <footer style="text-align: center; background-color: #f4f7f6; color: orange; padding: 10px; position: fixed; bottom: 0; width: 100%; font-size: 0.9rem;">
+        <p>© 2025 GetMyRoom. All Rights Reserved.</p>
+    </footer>
+
+    <style>
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        a:hover {
+            color: orange;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: orange;
+            color: white;
+        }
+    </style>
+
+    <script>
+        // Show Password toggle
+        document.getElementById('showPassword').addEventListener('change', function() {
+            const passwordInput = document.getElementById('password');
+            passwordInput.type = this.checked ? 'text' : 'password';
+        });
+
+        // Display message from query parameters
+        window.onload = function() {
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const message = urlParams.get('message');
+                const messageType = urlParams.get('messageType');
+                const redirectTo = urlParams.get('redirectTo');
+                const messageContainer = document.getElementById('messageContainer');
+
+                if (message && messageType) {
+                    const messageDiv = document.createElement('p');
+                    messageDiv.className = messageType === 'success' ? 'success-message' : 'error-message';
+                    messageDiv.textContent = decodeURIComponent(message);
+                    messageContainer.appendChild(messageDiv);
+
+                    // Clear query parameters from URL
+                    window.history.replaceState({}, document.title, window.location.pathname);
+
+                    // Redirect for success case after 3 seconds
+                    if (messageType === 'success' && redirectTo) {
+                        setTimeout(function() {
+                            window.location.href = redirectTo;
+                        }, 3000);
+                    }
+                }
+            } catch (e) {
+                console.error('Error displaying message:', e);
+            }
+        };
+
+        // Client-side validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const messageContainer = document.getElementById('messageContainer');
+            if (username.trim() === '') {
+                e.preventDefault();
+                messageContainer.innerHTML = '<p class="error-message">Username is required.</p>';
+            } else if (password.length < 8) {
+                e.preventDefault();
+                messageContainer.innerHTML = '<p class="error-message">Password must be at least 8 characters.</p>';
+            }
+        });
+    </script>
+</body>
+</html>
