@@ -31,14 +31,14 @@
             <ul>
                 <li><a href="ViewRoomServlet.do"><i class="fas fa-eye"></i> View Rooms</a></li>
                 <li><a href="ViewProfilesServlet.do"><i class="fas fa-eye"></i> View Profiles</a></li>
-                <li><a href="ManageRoomsServlet.do"><i class="fas fa-door-open"></i> Manage Rooms</a></li>
-                <li><a href="ManageProfilesServlet.do"><i class="fas fa-users"></i> Manage Profiles</a></li>
+                <li><a href="ManageRoomsServlet.do"><i class="fas fa-door-open"></i> Manage Student Rooms</a></li>
+                <li><a href="ManageProfilesServlet.do"><i class="fas fa-users"></i> Manage Student Profiles</a></li>
                 <li><a href="summaryReport.do"><i class="fas fa-chart-bar"></i> Reports</a></li>
                 <li><a href="#" onclick="confirmLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
             </ul>
         </div>
         <div class="content">
-            <img src="logo.png" alt="University Logo" class="logo">
+            <img src="logo.png" alt="Univ Logo" class="logo">
             <h1>Admin Dashboard</h1>
             <div class="live-time" id="liveTime"></div>
             <c:if test="${not empty message}">
