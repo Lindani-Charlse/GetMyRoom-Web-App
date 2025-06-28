@@ -102,13 +102,14 @@ public class CreateStudentProfileServlet extends HttpServlet {
     }
 
     private Profile createStudentProfile(Student student, String password, String fundingType, byte[] profilePic) {
-        Profile profile = new Profile();
-        profile.setPassword(password);
-        profile.setStudent(student);
-        profile.setFundingType(fundingType);
-        profile.setProfilePic(profilePic);
-        profile.setProfileId(generateProfileID());
-        return profile;
+        Profile theProfile = new Profile();
+
+        theProfile.setPassword(password);
+        theProfile.setStudent(student);
+        theProfile.setFundingType(fundingType);
+        theProfile.setProfilePic(profilePic);
+        theProfile.setProfileId(generateProfileID());
+        return theProfile;
     }
 
     private byte[] readInputStream(InputStream input) throws IOException {
@@ -122,7 +123,7 @@ public class CreateStudentProfileServlet extends HttpServlet {
     }
     
     public static Long generateProfileID() {
-        Random random = new Random();
-        return (long) (random.nextInt(999) + 2);
+        Random randomizer = new Random();
+        return (long) (randomizer.nextInt(999) + 2);
     }
 }
